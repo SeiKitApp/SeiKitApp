@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SeiKit — Voice Ambient Mixer on Sei</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Voice-controlled ambient soundscapes with on-chain saves on the Sei EVM testnet.">
+  <meta name="keywords" content="Sei, SeiKit, EVM, blockchain, ambient, soundscapes, voice, mixer">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://seikitapp.com/">
+  <meta property="og:title" content="SeiKit — Voice Ambient Mixer on Sei">
+  <meta property="og:description" content="Create and save ambient mixes with your voice. Fast on-chain persistence on Sei.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seikitapp.com/">
+  <meta property="og:image" content="https://seikitapp.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SeiKit — Voice Ambient Mixer on Sei">
+  <meta name="twitter:description" content="Create and save ambient mixes with your voice. Fast on-chain persistence on Sei.">
+  <meta name="twitter:image" content="https://seikitapp.com/logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="brand">SeiKit</div>
+    <div class="spacer"></div>
+    <div id="sceneName" class="pill big">—</div>
+    <button id="micBtn" class="btn ghost" aria-pressed="false">🎤 Mic: Off</button>
+    <button id="connectBtn" class="btn solid">🦊 Connect Wallet</button>
+  </header>
+
+  <main class="grid" role="main">
+    <section id="stage" aria-label="Scene">
+      <div class="stage-frame">
+        <img id="bg" alt="Current scene">
+      </div>
+      <div class="stage-head">
+        <div class="stage-title" aria-live="polite"></div>
+        <div id="hint" class="hint">Try: “take me to forest”, “add seagull”, “set birds to 35%”, “save to sei”, “load slot 2”</div>
+      </div>
+
+      <div class="under">
+        <div class="card">
+          <h3>Frequently Asked Questions</h3>
+          <div class="faq">
+            <div class="q">Why Sei?</div>
+            <div class="a">Fast finality and low fees. Saves confirm in seconds and can be loaded from any tab once confirmed.</div>
+            <div class="q">What gets saved?</div>
+            <div class="a">Scene, active layers, and each layer volume in basis points. You have three on-chain slots.</div>
+            <div class="q">Mic doesn’t work</div>
+            <div class="a">Allow microphone permissions and start after a click. You can always type the same commands.</div>
+            <div class="q">Tx stuck or failed</div>
+            <div class="a">Switch to a healthy Sei testnet RPC in your wallet and retry. Keep a little test SEI for gas.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mixer" class="panel" aria-label="Mixer">
+      <div class="panel-head">
+        <h2>Layers</h2>
+        <span id="accountBadge" class="badge big">Not connected</span>
+      </div>
+      <div id="layers" class="stack"></div>
+      <form id="cmdForm" class="cmd" autocomplete="off">
+        <input id="cmdInput" placeholder="Type a command (same as voice)" aria-label="Command">
+        <button class="btn solid" type="submit">Run</button>
+      </form>
+      <div id="log" class="log" aria-live="polite"></div>
+      <h2 class="section">My Saves (Sei)</h2>
+      <div id="saves" class="saves"></div>
+    </section>
+
+    <aside id="library" class="panel column" aria-label="Library">
+      <div class="panel-head">
+        <h2>Library</h2>
+        <span class="muted tiny">Click Add or say “add &lt;sound&gt;”.</span>
+      </div>
+      <div id="libList" class="lib-list scroll"></div>
+      <div id="coach" class="coach">
+        <div class="coach-head"><h2>Commands</h2></div>
+        <div class="tips">
+          <div class="tip">take me to <b>X</b></div>
+          <div class="muted tiny" style="grid-column:1/-1">X ∈ ocean, forest, desert, mountain, space, cafe</div>
+          <div class="tip">add <b>X</b></div>
+          <div class="muted tiny" style="grid-column:1/-1">X ∈ birds, wind, wave, seagull, engine, rain, campfire, leaf, water, music, chatter, kitchen, espresso machine, avalanche, chimes, cricket, bazaar, drone, bip, breath, type, space sound, swamp</div>
+          <div class="tip">remove <b>X</b></div>
+          <div class="tip">no <b>X</b></div>
+          <div class="tip">mute <b>X</b></div>
+          <div class="tip">unmute <b>X</b></div>
+          <div class="tip">more <b>X</b></div>
+          <div class="tip">less <b>X</b></div>
+          <div class="tip">set <b>X</b> to <b>Y%</b></div>
+          <div class="muted tiny" style="grid-column:1/-1">Y ∈ 0–100</div>
+          <div class="tip">silence</div>
+          <div class="tip">resume</div>
+          <div class="tip">save to sei</div>
+          <div class="tip">save to slot <b>N</b></div>
+          <div class="muted tiny" style="grid-column:1/-1">N ∈ 1–3</div>
+          <div class="tip">load slot <b>N</b></div>
+          <div class="tip">clear slot <b>N</b></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast-stack" aria-live="polite"></div>
+
+  <footer class="statusbar" role="status" aria-live="polite">
+    <div class="status">
+      <span id="micDot" class="dot"></span><span class="tiny">Mic</span>
+    </div>
+    <div class="status">
+      <span id="chainDot" class="dot"></span><span class="tiny">Chain</span>
+    </div>
+    <div id="txStatus" class="tiny">Idle</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js" defer></script>
+  <script src="./js/agent.js" defer></script>
+  <script src="./js/script.js" defer></script>
+</body>
+</html>

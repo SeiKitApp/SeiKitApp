@@ -1,0 +1,331 @@
+{
+  "address": "0x39f0a4d87d5c36EA9a50707f05415451F33d03b7",
+  "abi": [
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			}
+		],
+		"name": "Cleared",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "mixHash",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "scene",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "Saved",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "MAX_BP",
+		"outputs": [
+			{
+				"internalType": "uint16",
+				"name": "",
+				"type": "uint16"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "MAX_LAYERS",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "MAX_SAVES",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			}
+		],
+		"name": "clear",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "scene",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "layers",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint16[]",
+				"name": "volumesBP",
+				"type": "uint16[]"
+			}
+		],
+		"name": "computeMixHash",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			}
+		],
+		"name": "hasSave",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			}
+		],
+		"name": "loadMy",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "scene",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "layers",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint16[]",
+				"name": "volumesBP",
+				"type": "uint16[]"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "mixHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint64",
+				"name": "savedAt",
+				"type": "uint64"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			}
+		],
+		"name": "loadOf",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "scene",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "layers",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint16[]",
+				"name": "volumesBP",
+				"type": "uint16[]"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "mixHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint64",
+				"name": "savedAt",
+				"type": "uint64"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "maxBasisPoints",
+		"outputs": [
+			{
+				"internalType": "uint16",
+				"name": "",
+				"type": "uint16"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "maxLayers",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "maxSaves",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "slot",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "scene",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "layers",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint16[]",
+				"name": "volumesBP",
+				"type": "uint16[]"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "save",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+}
