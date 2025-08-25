@@ -1,85 +1,46 @@
-# SeiKit
-- Voice-controlled ambient mixer with on-chain saves on Sei EVM Testnet.
-- You speak; it switches scenes, layers sounds, and saves/loads your mix (scene + layers + volumes) on chain.
-- Live: https://seikitapp.com/
-- Contract (SEI testnet): 0x411453D2BfF4Ca48d67d2Bbc7b909D79a5309605
+# SeiKit 🎙️🎶
 
-## Features
-- Natural-language control: “take me to forest”, “add rain”, “more wind”, “silence”
-- Up to 6 layers per scene with sliders
-- 3 save slots per wallet on Sei (save, loadOf, clear)
-- Speech agent handles common mishears (“lord”→load, “too/to”→two)
-- Pure client: vanilla HTML/CSS/JS + Ethers v6 (no backend required)
+**SeiKit** is a voice-driven ambient mixer that saves your sound “scenes” on the **Sei EVM testnet**.  
+You speak; it switches GIF scenes, stacks up to six loops, and writes/loads your mix (scene + layers + volumes) directly on chain.  
+Each wallet has **3 save slots**.
 
-## Repo structure
-.
-├─ assets/                  # gifs + mp3s
-├─ css/
-│  └─ style.css
-├─ js/
-│  ├─ agent.js             # voice → actions
-│  ├─ script.js            # UI, audio engine, wallet + contract calls
-│  └─ contract.json        # { "address": "...", "abi": [ ... ] }
-├─ smart_contract_sei/     # solidity sources / notes (no secrets)
-├─ index.html
-└─ logo.png
-
-## Quick start (local)
-- Put your deployed address/ABI into js/contract.json:
-- { "address": "0xYourTestnetAddress", "abi": [ ... ] }
-- Serve the folder (don’t open via file://):
-- npx serve .
-- or: python -m http.server 5500
+<img width="1920" height="1702" alt="198dea1e54072426f502e2443edbf986" src="https://github.com/user-attachments/assets/7f4e0b48-f6d3-402e-8731-c8d8f5f1a5ab" />
 
 
-In MetaMask, add Sei EVM Testnet (chainId 0x530) and get a little test SEI.
+---
 
-Open the site, Connect Wallet, click Mic, try commands.
+## 🌐 Links
+- Website: [https://seikitapp.com/](https://seikitapp.com/)  
+- X / Twitter: [https://x.com/SeiKitApp](https://x.com/SeiKitApp)  
+- GitHub: [https://github.com/SeiKitApp/SeiKitApp](https://github.com/SeiKitApp/SeiKitApp)  
+- Demo video: [https://youtu.be/OGs72C_argM](https://youtu.be/OGs72C_argM)  
+- Smart contract (Sei testnet): `0x39f0a4d87d5c36EA9a50707f05415451F33d03b7`  
 
-## Environment
-- If you run an optional speech→intent relay, set your OpenAI key locally:
-- OPENAI_API_KEY=sk-...
-- Use .env only on your machine. Don’t commit it. Provide .env.example for others.
+---
 
-Voice commands
+## 🕹️ User Instructions
 
-Scenes: take me to forest/ocean/desert/mountain/cafe/space
+1. Connect wallet (**MetaMask → Sei Testnet**).
+2. Click mic (or type in the command box).
+3. Try commands:
 
-Layers: add rain, remove birds, mute wind, unmute music
+---
 
-Volume: more wind, less wind, set birds to 35%
+## What we built on Sei
 
-Global: silence, resume
+- Built exclusively on the Sei EVM testnet.
+- Uses the SeiKit_Saves.sol smart contract to persist scene state: Scene type, Up to 6 active layers, and Per-layer volumes (basis points for precision)
+- Frontend enforces Sei (chainId 0x530) and routes MetaMask txs.
+- Leverages Sei’s low fees + fast finality for real-time “voice → tx → UI” loops.
 
-Chain: save to sei, save to slot two, load slot 3, clear slot #1
 
-Deploy (GitHub Pages)
+<img width="2551" height="441" alt="graphviz" src="https://github.com/user-attachments/assets/5b60b26d-cbbb-41cf-8a1c-4dc532b1e7f2" />
 
-Keep files at repo root (as structured above).
+---
 
-Optional: add a CNAME file with seikitapp.com.
-
-Ensure js/contract.json exists on the published branch.
-
-Do not commit secrets
-
-Add a .gitignore with:
-
-.env
-*.env
-node_modules/
-.DS_Store
-
-Troubleshooting
-
-Audio won’t play: click the page once (browser gesture requirement).
-
-Mic blocked: allow permission; or type commands in the input.
-
-RPC/circuit-breaker errors: switch to a healthy Sei testnet RPC and retry.
-
-Wrong network: the app enforces 0x530; switch in MetaMask.
-
-License
-
-MIT
+## 🤯 Why it fits The Unexpected
+SeiKit uses blockchain as a real-time state layer for sensory environments, not financial products.
+Voice commands are parsed by an AI agent into deterministic on-chain state, making each sound mix portable and verifiable.
+- Voice → AI agent → On-chain scene
+- Anyone can load, fork, or share mixes.
+- With Sei’s speed, the loop feels immediate → enabling shared focus rooms, tipping for curated mixes, and remixable presets.
